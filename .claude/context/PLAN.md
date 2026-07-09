@@ -39,6 +39,6 @@ _(none)_
 
 ## Open Questions
 
-- Which GitHub repo will host the app's public releases (game-app repo name/visibility)? Fallback link needs confirming before launch.
-- backloggr.com registration still pending (per app repo's open questions).
+- RESOLVED 2026-07-10: releases live in the PUBLIC `iden0605/backloggr-releases` repo (app source repo is private, so its releases were invisible to visitors; user chose the releases-only-repo option to keep monetization optionality). The app repo's release.yml publishes there cross-repo via tauri-action `owner`/`repo` + a `RELEASES_TOKEN` fine-grained PAT (Contents read/write on backloggr-releases) — **the user still needs to create that PAT and `gh secret set RELEASES_TOKEN` in the private Backloggr repo before the first tag push.**
+- backloggr.com bought on Namecheap 2026-07-10; Cloudflare zone added (nameservers adaline/milan.ns.cloudflare.com set at Namecheap), awaiting activation → then attach custom domain to the Pages project.
 - Real product screenshots vs. stylized CSS mockups for the visuals — starting with stylized in-page mockups since no marketing screenshots exist yet.
