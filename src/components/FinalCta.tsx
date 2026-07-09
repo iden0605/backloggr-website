@@ -18,8 +18,7 @@ export function FinalCta() {
           on the record.
         </h2>
         <p className="reveal mx-auto mt-6 max-w-md leading-relaxed text-text-lo" style={{ animationDelay: "0.12s" }}>
-          Free, local-first, and running quietly in your tray the next time you press
-          play.
+          Free, private, and quietly running in your tray the next time you press play.
         </p>
         <div className="reveal mt-10 flex justify-center" style={{ animationDelay: "0.24s" }}>
           <DownloadButton large />

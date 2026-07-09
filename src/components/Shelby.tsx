@@ -34,8 +34,8 @@ export function Shelby() {
                 Something cozy but with real progression — 20 hours max?
               </div>
               <div className="max-w-[92%] text-sm leading-relaxed text-text-hi/90">
-                You put 86 hours into Stardew Valley, so gentle-loop games clearly
-                stick. Three that fit the window:
+                You've put 86 hours into Stardew Valley, so cozy games with steady
+                progression clearly work for you. Three that fit:
               </div>
               <div className="grid grid-cols-3 gap-2.5">
                 {RECS.map((g) => (
@@ -57,14 +57,13 @@ export function Shelby() {
             <br />I play next?"
           </h2>
           <p className="mt-5 max-w-md leading-relaxed text-text-lo">
-            Shelby reads your actual playtime — not a wishlist you wrote two years ago —
-            and recommends games that fit how you really play. Ask in plain words, answer
-            a sharp follow-up or two, and get a shortlist of real, verified titles with a
-            reason for every pick.
+            Shelby looks at what you actually play, not a wishlist you wrote two years
+            ago. Ask in plain words, answer a follow-up question or two, and you get a
+            shortlist of real games with a reason behind every pick.
           </p>
           <p className="mt-4 max-w-md leading-relaxed text-text-lo">
-            Nothing you already own gets recommended back to you. New releases make the
-            cut too, not just the classics everyone lists.
+            It won't recommend anything you already own, and it keeps up with new
+            releases instead of listing the same classics everyone knows.
           </p>
         </div>
       </div>

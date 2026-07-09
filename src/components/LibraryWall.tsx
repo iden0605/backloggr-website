@@ -10,9 +10,9 @@ export function LibraryWall() {
             A shelf, not a to-do list.
           </h2>
           <p className="mx-auto mt-5 max-w-lg leading-relaxed text-text-lo">
-            Your whole collection as a wall of cover art — imported from Steam in one
-            step, searchable, sortable, with your real hours on every game. No guilt
-            queue, no completion percentage nagging you. Just what you own and how you've
+            Your whole collection as a wall of cover art. Import it from Steam in one
+            step, then search and sort it with your real hours on every game. There's
+            no completion percentage nagging at you, just what you own and how you've
             played it.
           </p>
         </div>

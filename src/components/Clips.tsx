@@ -13,14 +13,13 @@ export function Clips() {
             Already recorded.
           </h2>
           <p className="mt-5 max-w-md leading-relaxed text-text-lo">
-            A rolling buffer records while you play, so the clutch play you never saw
-            coming is never lost. Press your clip hotkey and the last 30 seconds —
-            gameplay, game audio, your mic — are saved and filed under the game they
-            came from.
+            backloggr keeps a rolling buffer while you play, so the clutch moment you
+            never saw coming is already recorded. Press your clip hotkey and the last
+            30 seconds of gameplay, game audio and mic are saved under the right game.
           </p>
           <p className="mt-4 max-w-md leading-relaxed text-text-lo">
-            Zero setup, no virtual audio devices, and a quiet in-game toast confirms the
-            save without yanking you out of the action.
+            There's nothing to set up and no virtual audio devices to install. A small
+            in-game toast confirms the save without pulling you out of the game.
           </p>
         </div>
 

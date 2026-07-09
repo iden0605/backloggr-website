@@ -13,14 +13,15 @@ export function Tracking() {
             That's the whole job.
           </h2>
           <p className="mt-5 max-w-md leading-relaxed text-text-lo">
-            backloggr watches for your games and logs every session on its own — start
-            time, duration, what you actually played. Games you launch from Steam, Epic,
-            GOG, Battle.net, or Riot add themselves to your library the first time you
-            run them. No timers to start. No spreadsheets to keep honest.
+            backloggr watches for your games and logs every session on its own: when
+            you started, how long you played, and what you were playing. Anything you
+            launch from Steam, Epic, GOG, Battle.net or Riot gets added to your library
+            the first time you run it. You never start a timer or fill in a
+            spreadsheet.
           </p>
           <p className="mt-4 max-w-md leading-relaxed text-text-lo">
-            Crashed mid-session? Forced a restart? Your hours survive — sessions
-            reconcile themselves on the next launch.
+            If a game crashes or your PC restarts mid-session, your hours aren't lost.
+            Sessions sort themselves out on the next launch.
           </p>
         </div>
 
@@ -63,7 +64,7 @@ export function Tracking() {
             ))}
           </ul>
           <div className="mt-5 border-t border-border pt-4 font-mono text-[11px] text-text-lo">
-            Logged automatically — nothing to press
+            Logged automatically, nothing to press
           </div>
         </div>
       </div>

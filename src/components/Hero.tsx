@@ -37,9 +37,9 @@ export function Hero() {
             className="mt-6 max-w-xl animate-fade-up text-lg leading-relaxed text-text-lo"
             style={{ animationDelay: "0.28s" }}
           >
-            backloggr keeps your whole library on one shelf — playtime logged
-            automatically, your best moments clipped with one key, and Shelby on hand
-            when you can't decide what's next.
+            backloggr keeps your whole library on one shelf. It logs your playtime on
+            its own, clips your best moments with a single key, and Shelby is there
+            for when you can't decide what to play next.
           </p>
           <div
             className="mt-9 flex animate-fade-up flex-wrap items-center gap-x-5 gap-y-3"
@@ -47,7 +47,7 @@ export function Hero() {
           >
             <DownloadButton large />
             <span className="font-mono text-xs text-text-lo">
-              No account. No cloud. Your data stays on your PC.
+              No account needed. Everything stays on your PC.
             </span>
           </div>
         </div>
