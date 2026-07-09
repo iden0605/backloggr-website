@@ -10,14 +10,22 @@ function WindowsMark({ className }: { className?: string }) {
 }
 
 let cached: WindowsRelease | null | undefined;
+let inflight: Promise<WindowsRelease | null> | undefined;
+
+function resolveRelease(): Promise<WindowsRelease | null> {
+  if (cached !== undefined) return Promise.resolve(cached);
+  inflight ??= fetchLatestWindowsRelease().then((r) => {
+    cached = r;
+    return r;
+  });
+  return inflight;
+}
 
 export function useLatestRelease() {
   const [release, setRelease] = useState<WindowsRelease | null>(cached ?? null);
   useEffect(() => {
-    if (cached !== undefined) return;
     let alive = true;
-    fetchLatestWindowsRelease().then((r) => {
-      cached = r;
+    resolveRelease().then((r) => {
       if (alive) setRelease(r);
     });
     return () => {
@@ -31,9 +39,23 @@ export function useLatestRelease() {
 // rust warming on hover — chalk stays for text, never a white slab.
 export function DownloadButton({ large = false }: { large?: boolean }) {
   const release = useLatestRelease();
+
+  // The asset URL serves Content-Disposition: attachment, so following it
+  // saves the file without leaving the page. If the page-load lookup hasn't
+  // landed yet, resolve it on click and start the download programmatically —
+  // the releases page is only ever a fallback when no release exists at all.
+  const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (release) return;
+    e.preventDefault();
+    resolveRelease().then((r) => {
+      window.location.href = r?.url ?? RELEASES_URL;
+    });
+  };
+
   return (
     <a
       href={release?.url ?? RELEASES_URL}
+      onClick={onClick}
       className={
         "group inline-flex items-center gap-3 rounded-xl border font-semibold text-text-hi " +
         "border-border-strong bg-surface-alt/90 backdrop-blur transition-all duration-200 " +

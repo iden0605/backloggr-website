@@ -1,8 +1,9 @@
 // Latest-release lookup for the Download button.
-// The app ships from GitHub Releases on iden0605/Backloggr; until the first
-// public release exists this fetch 404s and callers fall back to RELEASES_URL.
+// The app's source repo is private, so installers publish to the PUBLIC
+// releases-only repo below; until the first release exists this fetch 404s
+// and callers fall back to RELEASES_URL.
 
-const REPO = "iden0605/Backloggr";
+const REPO = "iden0605/backloggr-releases";
 export const RELEASES_URL = `https://github.com/${REPO}/releases/latest`;
 
 export interface WindowsRelease {
