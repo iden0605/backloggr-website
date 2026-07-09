@@ -12,7 +12,7 @@ The marketing website for **backloggr** (backloggr.com) — the Windows-first de
 - **Styling:** Tailwind CSS v3 (PostCSS), same semantic palette names as the app repo
 - **Fonts:** Archivo (display + sans) and JetBrains Mono — matching the app
 - **Deployment:** static `dist/` output; target is Cloudflare Pages (or any static host) on backloggr.com
-- **Data:** latest installer version/URL fetched client-side from the GitHub Releases API (`iden0605` releases repo) with a hardcoded fallback link — per the game-app decision that the site pulls release info from the API rather than sharing code
+- **Data:** latest installer version/URL fetched client-side from the GitHub Releases API (the public `iden0605/Backloggr` app repo, GPL-3.0) with a hardcoded fallback link — per the game-app decision that the site pulls release info from the API rather than sharing code
 
 ## Structure
 
