@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg text-text-hi font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-accent/60 text-text-hi;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #151414;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2e2a28;
+    border-radius: 5px;
+    border: 2px solid #151414;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #403a37;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Small mono uppercase tracked section label — the app's .shelf-label */
+  .shelf-label {
+    @apply font-mono text-xs uppercase tracking-[0.22em] text-text-lo select-none;
+  }
+
+  /* Hotkey chip — the app's .kbd */
+  .kbd {
+    @apply font-mono text-[0.8em] font-medium bg-surface-alt border border-border-strong rounded-md px-2 py-0.5 text-text-hi;
+    box-shadow: 0 2px 0 0 #0c0b0b;
+  }
+
+  /* Film-grain overlay for atmosphere */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@layer utilities {
+  /* Scroll-reveal: .reveal starts hidden, .revealed animates in.
+     Variants pick the entrance direction. */
+  .reveal {
+    opacity: 0;
+  }
+  .revealed {
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .revealed.reveal-left {
+    animation-name: slide-left;
+  }
+  .revealed.reveal-right {
+    animation-name: slide-right;
+  }
+  .revealed.reveal-scale {
+    animation-name: scale-up;
+  }
+
+  @keyframes slide-left {
+    from {
+      opacity: 0;
+      transform: translateX(-32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes slide-right {
+    from {
+      opacity: 0;
+      transform: translateX(32px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes scale-up {
+    from {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}
