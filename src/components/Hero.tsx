@@ -1,5 +1,6 @@
 import { DownloadButton } from "./DownloadButton";
 import { GAMES, Poster } from "./posters";
+import { formatClock, useSessionSeconds } from "../lib/useSessionTimer";
 
 // The app's "Backdrop" idea at marketing scale: a blurred wash of cover-art
 // color melting into near-black, a poster-sized headline, and a drifting fan of
@@ -90,6 +91,7 @@ function MobilePosterRow() {
 // A loose fan of covers, each drifting on its own slow float — the cover art is
 // the loudest thing on screen, exactly like the app itself.
 function PosterFan() {
+  const seconds = useSessionSeconds();
   const fan = [
     { game: GAMES[1], rotate: "-10deg", x: "0rem", y: "3.5rem", delay: "0s", z: 1 },
     { game: GAMES[0], rotate: "-2deg", x: "5.5rem", y: "0rem", delay: "0.9s", z: 3 },
@@ -128,7 +130,9 @@ function PosterFan() {
       {/* Session chip pinned to the front poster */}
       <div className="absolute left-24 top-[19.5rem] z-10 flex items-center gap-2 rounded-lg border border-border-strong bg-bg/90 px-3.5 py-2 backdrop-blur">
         <span className="h-2 w-2 animate-pulse-soft rounded-full bg-accent" />
-        <span className="font-mono text-xs text-text-hi">1:47:23 this session</span>
+        <span className="font-mono text-xs tabular-nums text-text-hi">
+          {formatClock(seconds)} this session
+        </span>
       </div>
     </div>
   );

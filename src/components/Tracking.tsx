@@ -1,4 +1,7 @@
+import { formatHm, useSessionSeconds } from "../lib/useSessionTimer";
+
 export function Tracking() {
+  const seconds = useSessionSeconds();
   return (
     <section id="tracking" className="mx-auto max-w-6xl scroll-mt-24 px-6 py-28">
       <div className="grid items-center gap-14 md:grid-cols-2">
@@ -29,7 +32,7 @@ export function Tracking() {
           </div>
           <ul className="mt-5 space-y-3">
             {[
-              { name: "Elden Ring", when: "Now", time: "1h 47m", live: true },
+              { name: "Elden Ring", when: "Now", time: formatHm(seconds), live: true },
               { name: "Hollow Knight", when: "Yesterday", time: "2h 05m" },
               { name: "Hades", when: "Tuesday", time: "3h 40m" },
               { name: "The Witcher 3", when: "Monday", time: "58m" },
@@ -49,7 +52,11 @@ export function Tracking() {
                     <div className="font-mono text-[11px] text-text-lo">{s.when}</div>
                   </div>
                 </div>
-                <span className={"font-mono text-sm " + (s.live ? "text-accent" : "text-text-lo")}>
+                <span
+                  className={
+                    "font-mono text-sm tabular-nums " + (s.live ? "text-accent" : "text-text-lo")
+                  }
+                >
                   {s.time}
                 </span>
               </li>
