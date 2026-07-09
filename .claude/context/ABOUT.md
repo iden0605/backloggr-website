@@ -19,7 +19,10 @@ The marketing website for **backloggr** (backloggr.com) — the Windows-first de
 ```
 src/
   components/     One file per page section (Hero, Features, Clips, Shelby, Download, Footer…)
-  lib/            github.ts — latest-release fetch + asset picking (.msi/.exe)
+  lib/            github.ts — latest-release fetch + asset picking (.msi/.exe);
+                  useSessionTimer.ts — the shared ticking clock behind the fictional
+                  live session (hero chip h:mm:ss + tracking ledger row Xh Ym), counts
+                  up from a fixed 1:47:23 base per load, deliberately NOT persisted
   App.tsx         Section composition (single scrolling page)
   index.css       Tailwind layers + base rules (selection color, scrollbar, .page-title-style type)
 tailwind.config.js  Iron & Chalk palette as semantic colors (bg/surface/text-hi/text-lo/accent/…)
@@ -48,4 +51,5 @@ tailwind.config.js  Iron & Chalk palette as semantic colors (bg/surface/text-hi/
 - The AI chatbot is named **Shelby** in all user-facing copy — never "the AI".
 - **Game art is real cover art hotlinked from Steam's public CDN** (`steamCoverUrl` in `posters.tsx`, `library_600x900.jpg` per appid — 2:3 aspect) — user's explicit choice 2026-07-10, accepting the small unlicensed-artwork risk as industry-common promotional use. Every game keeps a palette-toned gradient poster as the automatic `onError` fallback, so a pulled/missing cover never shows a broken tile. Game *names* are fine to use (titles aren't copyrightable).
 - **Don't hardcode the clip hotkey in site copy** — the app is making it user-configurable (app repo task 26). Copy says "your clip hotkey" / "one keypress"; Alt+F9 appears nowhere on the site.
+- **Copy voice (user feedback 2026-07-10: "very AI like")**: no em dashes in user-visible text (code comments fine; the title separator is `·`), no staccato fragment patterns ("No X. No Y. Just Z."), plain full sentences. Display headlines ("That moment? Already recorded." etc.) are the sanctioned exception. Time-like widgets: running clocks tick (session chip + ledger live row, via the shared timer), durations/aggregates stay static.
 - The app itself has NOT shipped a public release yet (release.yml has never run) — until a real release exists, the download button's API fetch will 404 and use the fallback; this is expected.

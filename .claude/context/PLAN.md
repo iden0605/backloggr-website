@@ -22,6 +22,8 @@ Initial buildout — empty repo to a polished, deployable single-page marketing 
 
 ## Completed
 
+- Live-ticking session timer (2026-07-10): new `src/lib/useSessionTimer.ts` — hero fan chip counts up in h:mm:ss and the Tracking ledger's live row rolls its minutes off the same shared clock; fixed 1:47:23 base per page load, not persisted (a stored ever-growing timer would read as broken); `tabular-nums` prevents digit jitter. Tick verified in a real browser before deploy.
+- Natural-copy pass (2026-07-10, user: text read "very AI like"): every visible sentence rewritten — zero em dashes in copy, staccato fragments replaced with plain sentences, Shelby's mock reply humanized, OG description de-Alt+F9'd, title separator → `·`. Display headlines kept. Voice rule recorded in ABOUT.md Conventions.
 - Initial commit pushed to iden0605/backloggr-website (private) main — 2026-07-10, `32b5c6e`
 - **Deployed to Cloudflare Pages** — 2026-07-10: project `backloggr` (created via `wrangler pages project create`, production branch main), live at https://backloggr-bcq.pages.dev. Deploys are direct-upload (`npm run deploy` → build + `wrangler pages deploy dist --project-name backloggr`), NO GitHub integration — repo stays private, Cloudflare never touches it. wrangler is a devDependency; auth is the user's existing OAuth login (same account as the proxy worker)
 - Repo hygiene (.gitignore, README) — 2026-07-10
