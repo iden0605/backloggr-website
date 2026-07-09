@@ -17,12 +17,13 @@ Initial buildout — empty repo to a polished, deployable single-page marketing 
 
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1 | User visual review of the implemented site (`npm run dev`) | Todo | Built 2026-07-10, self-reviewed via Playwright screenshots only |
-| 2 | Initial commit + push to origin main | Todo | User's repo: iden0605/backloggr-website — awaiting user go-ahead |
-| 3 | Deploy to Cloudflare Pages + point backloggr.com | Todo | Later — domain not yet registered as of 2026-07-07 |
+| 1 | Attach backloggr.com custom domain | Todo | User buying it on Namecheap; needs dashboard steps (add zone to CF, swap NS at Namecheap, add custom domain to the Pages project) — see Open Questions |
+| 2 | Update footer/OG URLs once backloggr.com is live | Todo | e.g. add canonical URL + og:url meta |
 
 ## Completed
 
+- Initial commit pushed to iden0605/backloggr-website (private) main — 2026-07-10, `32b5c6e`
+- **Deployed to Cloudflare Pages** — 2026-07-10: project `backloggr` (created via `wrangler pages project create`, production branch main), live at https://backloggr-bcq.pages.dev. Deploys are direct-upload (`npm run deploy` → build + `wrangler pages deploy dist --project-name backloggr`), NO GitHub integration — repo stays private, Cloudflare never touches it. wrangler is a devDependency; auth is the user's existing OAuth login (same account as the proxy worker)
 - Repo hygiene (.gitignore, README) — 2026-07-10
 - Vite + React 18 + TS + Tailwind v3 scaffold with Iron & Chalk palette + Archivo/JetBrains Mono — 2026-07-10
 - Full single-page implementation: Nav (solid-on-scroll), Hero (Backdrop glow + app-window mockup + "Download for Windows" CTA), marquee strip, four alternating feature sections (Tracking ledger / Shelby chat mock / Clips buffer visual / Library poster wall), mono spec strip, closing CTA, footer — 2026-07-10
