@@ -1,10 +1,10 @@
 # Plan
 
-_Last updated: 2026-07-10 (initial creation)_
+_Last updated: 2026-07-10 (bug report feature session)_
 
 ## Current Phase
 
-Initial buildout — empty repo to a polished, deployable single-page marketing site.
+Site live at backloggr.com (apex + www) with the bug report pipeline deployed.
 
 ## Goals
 
@@ -17,10 +17,13 @@ Initial buildout — empty repo to a polished, deployable single-page marketing 
 
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1 | Attach backloggr.com custom domain | Todo | User buying it on Namecheap; needs dashboard steps (add zone to CF, swap NS at Namecheap, add custom domain to the Pages project) — see Open Questions |
+| 1 | Attach backloggr.com custom domain | Done | 2026-07-10: www live day one; the apex record was the missing piece ("works on my browser only" report) — apex registered on the Pages project via API, user added the proxied CNAME `@ → backloggr-bcq.pages.dev`, apex verified 200. Leftover Namecheap eforward MX/SPF records deleted (they blocked Email Routing onboarding). |
 | 2 | Update footer/OG URLs once backloggr.com is live | Todo | e.g. add canonical URL + og:url meta |
+| 3 | Bug report section + pipeline | Done | 2026-07-10 — see Completed. |
 
 ## Completed
+
+- **Bug report feature** (2026-07-10, deployed + tested end-to-end): `BugReport.tsx` section ("005 / Bug reports", footer link) + `report-worker/` (worker `backloggr-report` at backloggr-report.backloggr.workers.dev). Form: optional name/email, required description, drag-drop images/videos with previews (5 files, 10/60/80MB caps mirrored server-side), send/sending/sent states, 3-min cooldown ticking in the button and persisted via localStorage AND enforced per-IP in the worker (R2 marker objects; failed sends don't burn it; 429 carries retryAfter which the frontend adopts). Delivery: email to iden0605@gmail.com via the FREE Email Routing send_email binding (EmailMessage + mimetext; the new Email Sending product is Workers-Paid-gated on this account — do NOT purchase it for this) with reply-to set to the reporter, small images attached, all files linked through GET /attachments/* (unguessable UUID prefix) from the `backloggr-reports` R2 bucket. Account setup that session: Email Routing onboarded for backloggr.com + iden0605@gmail.com verified destination, R2 enabled. Verified live: 200 send → email received by user, image attachment previewed, immediate resend 429, cooldown survives reload (Playwright), section screenshots at 1440/390px, live www check. One transient 500 (Cloudflare error 1104) on the very first send minutes after Email Routing onboarding — propagation, not code: the video-attachment retest succeeded (image+video stored, both /attachments/* links served 200 with correct content types, traversal to ratelimit markers 404s). Test objects deleted from the bucket after verification.
 
 - Live-ticking session timer (2026-07-10): new `src/lib/useSessionTimer.ts` — hero fan chip counts up in h:mm:ss and the Tracking ledger's live row rolls its minutes off the same shared clock; fixed 1:47:23 base per page load, not persisted (a stored ever-growing timer would read as broken); `tabular-nums` prevents digit jitter. Tick verified in a real browser before deploy.
 - Natural-copy pass (2026-07-10, user: text read "very AI like"): every visible sentence rewritten — zero em dashes in copy, staccato fragments replaced with plain sentences, Shelby's mock reply humanized, OG description de-Alt+F9'd, title separator → `·`. Display headlines kept. Voice rule recorded in ABOUT.md Conventions.

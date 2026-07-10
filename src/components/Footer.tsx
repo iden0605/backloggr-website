@@ -9,6 +9,9 @@ export function Footer() {
           <span className="font-display font-bold tracking-tight">backloggr</span>
         </div>
         <div className="flex items-center gap-6 font-mono text-xs text-text-lo">
+          <a href="#report" className="transition-colors hover:text-text-hi">
+            Report a bug
+          </a>
           <a href={RELEASES_URL} className="transition-colors hover:text-text-hi">
             Releases
           </a>

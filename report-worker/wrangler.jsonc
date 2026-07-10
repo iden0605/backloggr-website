@@ -1,0 +1,19 @@
+// backloggr-report — bug report intake for the marketing site.
+// POST /report        multipart form (name, email, description, files[]) →
+//                     attachments to R2, report emailed to the developer.
+// GET  /attachments/* streams a stored attachment back (unguessable UUID paths).
+// Deploy: npx wrangler deploy -c report-worker/wrangler.jsonc (from repo root)
+{
+  "name": "backloggr-report",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "r2_buckets": [
+    { "binding": "REPORTS", "bucket_name": "backloggr-reports" }
+  ],
+  // Email Routing send binding (free tier): can only deliver to verified
+  // destination addresses on the account, which is all this worker does.
+  "send_email": [
+    { "name": "EMAIL", "destination_address": "iden0605@gmail.com" }
+  ]
+}

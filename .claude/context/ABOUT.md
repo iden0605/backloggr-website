@@ -1,6 +1,6 @@
 # About
 
-_Last updated: 2026-07-10 (initial creation — repo scaffolded this session)_
+_Last updated: 2026-07-10 (bug report section + report-worker added; apex backloggr.com DNS live)_
 
 ## What It Is
 
@@ -17,6 +17,11 @@ The marketing website for **backloggr** (backloggr.com) — the Windows-first de
 ## Structure
 
 ```
+report-worker/    Cloudflare Worker (backloggr-report, deployed separately via
+                  `npx wrangler deploy -c report-worker/wrangler.jsonc`): bug report
+                  intake — POST /report stores attachments in R2 (backloggr-reports
+                  bucket) and emails the report to the developer; GET /attachments/*
+                  streams files back on unguessable UUID paths
 src/
   components/     One file per page section (Hero, Features, Clips, Shelby, Download, Footer…)
   lib/            github.ts — latest-release fetch + asset picking (.msi/.exe);
@@ -35,6 +40,8 @@ tailwind.config.js  Iron & Chalk palette as semantic colors (bg/surface/text-hi/
 | `src/lib/github.ts` | Fetches the latest GitHub release, picks the Windows installer asset, exposes version string; falls back to the releases page URL on failure |
 | `tailwind.config.js` | Iron & Chalk semantic colors — copied from the app repo so both surfaces stay in sync |
 | `src/App.tsx` | Orders the page sections |
+| `src/components/BugReport.tsx` | "005 / Bug reports" section (between Specs and FinalCta; footer "Report a bug" link): name/email optional, description, drag-drop attachments (5 files; images ≤10MB, videos ≤60MB, 80MB total) with previews, send states, and a 3-minute cooldown persisted in localStorage (`backloggr:reportCooldownUntil`) that the worker also enforces per IP. Posts to `REPORT_URL` (backloggr-report.backloggr.workers.dev). |
+| `report-worker/src/index.ts` | Report intake worker. Emails via the FREE Email Routing `send_email` binding (EmailMessage + mimetext raw MIME, `nodejs_compat`) — destination locked to iden0605@gmail.com (the paid Email Sending product is Workers-Paid-gated on this account; the free binding only delivers to verified destination addresses, which is all this needs). Images ≤6MB ride as attachments (12MB budget; base64 inflates ~37% against the ~25MB routed-mail cap), videos are R2 links only. Per-IP cooldown markers live in R2 (`ratelimit/<ip>`); a failed send does not burn the cooldown. CORS allowlist: backloggr.com, www, pages.dev, localhost. |
 
 ## Common Tasks
 
