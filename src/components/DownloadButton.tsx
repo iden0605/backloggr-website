@@ -57,7 +57,7 @@ export function DownloadButton({ large = false }: { large?: boolean }) {
       href={release?.url ?? RELEASES_URL}
       onClick={onClick}
       className={
-        "group inline-flex items-center gap-3 rounded-xl border font-semibold text-text-hi " +
+        "group inline-flex items-center justify-center gap-3 rounded-xl border font-semibold text-text-hi " +
         "border-border-strong bg-surface-alt/90 backdrop-blur transition-all duration-200 " +
         "hover:border-accent/60 hover:bg-surface-alt hover:shadow-[0_0_36px_-8px_rgba(185,106,85,0.5)] " +
         "active:scale-[0.98] select-none " +

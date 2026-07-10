@@ -1,4 +1,5 @@
 import { RELEASES_URL } from "../lib/github";
+import { APP_REPO_URL } from "./Nav";
 
 export function Footer() {
   return (
@@ -15,7 +16,7 @@ export function Footer() {
           <a href={RELEASES_URL} className="transition-colors hover:text-text-hi">
             Releases
           </a>
-          <a href="https://github.com/iden0605" className="transition-colors hover:text-text-hi">
+          <a href={APP_REPO_URL} className="transition-colors hover:text-text-hi">
             GitHub
           </a>
           <span>© {new Date().getFullYear()} backloggr</span>
